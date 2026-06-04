@@ -1,0 +1,37 @@
+services:
+  # Usluga za frontenda (Nginx proxy + static)
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+  # Usluga za bekena (Node.js API)
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGO_URI=mongodb://db:27017/watches
+      - PORT=5000
+    depends_on:
+      db:
+        condition: service_healthy
+
+  # Usluga za bazata danni (MongoDB)
+  db:
+    image: mongo:6.0
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+
+volumes:
+  mongo-data:

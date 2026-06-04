@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="bg">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>22417</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">
+      <i class="fa-solid fa-clock-rotate-left logo-icon"></i>
+      <span>22417</span>
+    </div>
+    <button id="open-add-modal-btn" class="btn btn-primary">
+      <i class="fa-solid fa-plus"></i> Dobavi Chasovnik
+    </button>
+  </header>
+
+  <main class="container">
+    <div class="hero-section">
+      <h1>Kolekciya ot Chasovnici</h1>
+      <p>Izberete model, za da nauchite poveche detaili.</p>
+    </div>
+
+    <div id="watches-grid" class="watches-grid">
+      <div class="loading">
+        <i class="fa-solid fa-circle-notch fa-spin"></i> Zarezhdane...
+      </div>
+    </div>
+  </main>
+
+  <div id="detail-modal" class="modal">
+    <div class="modal-content glass detail-content">
+      <button class="close-btn" id="close-detail-btn">&times;</button>
+      <div class="detail-layout">
+        <div class="detail-img-wrapper">
+          <img id="detail-image" src="" alt="Watch Image">
+        </div>
+        <div class="detail-info">
+          <span id="detail-brand" class="watch-brand">Brand</span>
+          <h2 id="detail-name" class="watch-title">Watch Name</h2>
+          <p id="detail-price" class="watch-price">$0</p>
+          <div class="divider"></div>
+          <p id="detail-desc" class="watch-desc">Description goes here...</p>
+          <button id="detail-delete-btn" class="btn btn-danger" onclick="window.handleDetailDelete()">
+            <i class="fa-solid fa-trash-can"></i> Iztrii
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="add-modal" class="modal">
+    <div class="modal-content glass add-content">
+      <button class="close-btn" id="close-add-btn">&times;</button>
+      <h2>Nov Chasovnik</h2>
+      <form id="add-watch-form">
+        <div class="form-group">
+          <label for="watch-name">Ime na modela <span class="required">*</span></label>
+          <input type="text" id="watch-name" required placeholder="Napr. Speedmaster Professional">
+        </div>
+        <div class="form-group">
+          <label for="watch-brand">Marka <span class="required">*</span></label>
+          <input type="text" id="watch-brand" required placeholder="Napr. Omega">
+        </div>
+        <div class="form-group">
+          <label for="watch-price">Cena</label>
+          <input type="text" id="watch-price" placeholder="Napr. $7,600">
+        </div>
+        <div class="form-group">
+          <label for="watch-image">Snimka URL <span class="required">*</span></label>
+          <input type="url" id="watch-image" required placeholder="https://images.unsplash.com/...">
+        </div>
+        <div class="form-group">
+          <label for="watch-desc">Opisanie <span class="required">*</span></label>
+          <textarea id="watch-desc" rows="4" required
+            placeholder="Kratko opisanie na modela, mehanizam, istoriya..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-submit">
+          <i class="fa-solid fa-check"></i> Zapishi
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
